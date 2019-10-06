@@ -18,10 +18,15 @@ def trial(n=10):
 
 n_trials = 10000
 dat = np.zeros(n_trials)
-n = 40
+n = 30
 
 for i in np.arange(n_trials):
     dat[i] = trial(n=n)
+
+val, ct = np.unique(dat, return_counts=True)
+c = ct / n_trials
+for i in zip(val, c):
+    print(i)
 
 sns.distplot(dat, kde=False)
 plt.title(f'Distribution for n={n}')
