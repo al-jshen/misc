@@ -29,14 +29,15 @@ def decrypt(n, e, p, q, r):
             break
     return r ** d % n
 
-p = 61
-q = 53
-n, e = init(p, q)
-print(n, e)
-m = 1245
-print(m)
-enc = encrypt(n, e, m)
-print(enc)
-dec = decrypt(n, e, p, q, enc)
-print(dec)
+if __name__ == "__main__":
+    p = 61
+    q = 53
+    n, e = init(p, q)
+    print(n, e)
+    m = 1245
+    print(m)
+    enc = encrypt(n, e, m)
+    print(enc)
+    dec = decrypt(n, e, p, q, enc)
+    print(dec)
 
