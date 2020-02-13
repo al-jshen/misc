@@ -49,7 +49,7 @@ def init():
 
 def animate(i):
     loss, weight, bias, feature, label = run_epoch(x, y)
-    print(loss.item())
+    print(loss.item(), m, b, weight, bias)
     line.set_data([0, max_x], [bias, max_x * weight + bias])
     return line,
 
