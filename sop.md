@@ -32,18 +32,21 @@
 ## Things to Write About
 - demonstrate area of your academic or research interest. what about it excites you?
 - how your past education and other experience have prepped you to be successful in this program
-    - what skills do you bring? be specific. 
+    - what skills do you bring? be specific. areas of specialty and expertise.
 - what you hope to achieve
-- why this particular program is the best place for you to pursue your interests
+- why this particular program is the best place for you to pursue your interests. show compatibility with the department or school.
+    - how can your research interests be fulfilled by this program specifically?
 - what work you have already done in this area
     - specific skills that you have learned that are relevant 
 - mention specific faculty members or projects and how they align with your specific area of interest
 - mention any publications and conferences you have been a part of 
 - demonstrate that you have a clear understanding of what the program involves. affirm that you are interested in what it offers. 
+    
 - who are you? what do you want to do? distinguish yourself from other people in the field. do not be vague. 
 - "use specific examples of past work to explain why you are capable of achieving the goals you are setting for yourself for the future"
 - be careful with this one: extenuating circumstances. DO NOT COMPLAIN. what did you do despite these circumstances? what positives came of it or despite it? how did you work through this?
 - don't: write about being a child genius or what you were doing as a kid. 
+
 
 
 ## Things to Do
