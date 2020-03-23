@@ -6,11 +6,12 @@ import matplotlib.pyplot as plt
 
 cap = cv2.VideoCapture('/Users/js/Desktop/test.mp4')
 savedir = '/Users/js/Desktop/testing'
-n_rings = 100
+n_rings = 2000
 nframes = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 everynth = nframes // n_rings
 ncaps = nframes // everynth
 colours = np.zeros((ncaps, 3))
+print(ncaps)
 
 count = 0
 while cap.isOpened():
@@ -18,8 +19,9 @@ while cap.isOpened():
     ret, frame = cap.read()
     if ret:
         if count % everynth == 0:
-            rgb = frame.mean(axis=(0,1))[::-1] / 255
+            rgb = frame.mean(axis=(0,1))[::-1] / 256
             colours[count // everynth - 1] = rgb
+            print(count // everynth - 1)
         else:
             continue
     else:
@@ -27,6 +29,8 @@ while cap.isOpened():
 
 cap.release()
 cv2.destroyAllWindows()
+
+np.savetxt(f'{savedir}/cols.csv', colours, delimiter=',')
 
 radii = np.linspace(1e-3, ncaps * 1, ncaps)
 
