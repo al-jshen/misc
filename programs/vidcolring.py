@@ -4,9 +4,9 @@ import subprocess
 import numpy as np
 import matplotlib.pyplot as plt
 
-cap = cv2.VideoCapture('/Users/js/Desktop/test.mp4')
+cap = cv2.VideoCapture('/Users/js/Desktop/test3.mp4')
 savedir = '/Users/js/Desktop/testing'
-n_rings = 2000
+n_rings = 1000
 nframes = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 everynth = nframes // n_rings
 ncaps = nframes // everynth
