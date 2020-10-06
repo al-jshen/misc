@@ -1,5 +1,6 @@
 # Euclidean algorithm for computing greatest common divisor.
 
+
 def gcd(a, b):
 
     if b >= a:
@@ -18,8 +19,12 @@ def gcd(a, b):
         rk_1 = r1
         rk = rk_2 % rk_1
         while rk > 0:
+            print(rk, rk_1, rk_2)
             rk_2 = rk_1
             rk_1 = rk
             rk = rk_2 % rk_1
         else:
             return rk_1
+
+
+print(gcd(int(input()), int(input())))
