@@ -1,10 +1,19 @@
 #include <iostream>
 using namespace std;
 
-__global__ void add(int n, float x[], float y[])
+__global__ void init(int n, float *x, float *y) {
+  int index = blockIdx.x * blockDim.x + threadIdx.x;
+  int stride = blockDim.x * gridDim.x;
+  for (int i = index; i < n; i += stride) {
+    x[i] = 1.0f;
+    y[i] = 2.0f;
+  }
+}
+
+__global__ void add(int n, float *x, float *y)
 {
-  int index = threadIdx.x;
-  int stride = blockDim.x;
+  int index = blockIdx.x * blockDim.x + threadIdx.x;
+  int stride = blockDim.x * gridDim.x;
   for (int i = index; i < n; i+= stride) {
     y[i] = x[i] + y[i];
   }
@@ -12,17 +21,22 @@ __global__ void add(int n, float x[], float y[])
 
 int main()
 {
-  const int N = 1e6;
+  const int N = 1 << 20;
   float *x, *y;
   cudaMallocManaged(&x, N * sizeof(float));
   cudaMallocManaged(&y, N * sizeof(float));
 
-  for (int i = 0; i < N; i++) {
-    x[i] = 1.0f;
-    y[i] = 2.0f;
-  }
+  /* for (int i = 0; i < N; i++) { */
+  /*   x[i] = 1.0f; */
+  /*   y[i] = 2.0f; */
+  /* } */
 
-  add<<<1, 1024>>>(N, x, y);
+  int blockSize = 512;
+  int numBlocks = (N + blockSize - 1) / blockSize;
+  /* cout << "blockSize" << blockSize << endl; */
+  /* cout << "numBlocks" << numBlocks << endl; */
+  init<<<numBlocks, blockSize>>>(N, x, y);
+  add<<<numBlocks, blockSize>>>(N, x, y);
 
   cudaDeviceSynchronize();
 
