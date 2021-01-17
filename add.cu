@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-void add(int n, float x[], float y[])
+__global__ void add(int n, float x[], float y[])
 {
   for (int i = 0; i < n; i++) {
     y[i] = x[i] + y[i];
@@ -11,15 +11,18 @@ void add(int n, float x[], float y[])
 int main()
 {
   const int N = 1e6;
-  float* x = new float[N];
-  float* y = new float[N];
+  float *x, *y;
+  cudaMallocManaged(&x, N * sizeof(float));
+  cudaMallocManaged(&y, N * sizeof(float));
 
   for (int i = 0; i < N; i++) {
     x[i] = 1.0f;
     y[i] = 2.0f;
   }
 
-  add(N, x, y);
+  add<<<1, 1>>>(N, x, y);
+
+  cudaDeviceSynchronize();
 
   float maxErr = 0.0f;
   for (int i = 0; i < N; i++) {
@@ -27,8 +30,8 @@ int main()
   }
   cout << maxErr << endl;
 
-  free(x);
-  free(y);
+  cudaFree(x);
+  cudaFree(y);
 
   return 0;
 }
