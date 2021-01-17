@@ -3,7 +3,9 @@ using namespace std;
 
 __global__ void add(int n, float x[], float y[])
 {
-  for (int i = 0; i < n; i++) {
+  int index = threadIdx.x;
+  int stride = blockDim.x;
+  for (int i = index; i < n; i+= stride) {
     y[i] = x[i] + y[i];
   }
 }
@@ -20,7 +22,7 @@ int main()
     y[i] = 2.0f;
   }
 
-  add<<<1, 1>>>(N, x, y);
+  add<<<1, 1024>>>(N, x, y);
 
   cudaDeviceSynchronize();
 
