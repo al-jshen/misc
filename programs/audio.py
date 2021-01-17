@@ -20,8 +20,8 @@ def gen_spec(duration):
 
 
 if __name__ == "__main__":
-    fs = 81000
-    dur = 0.05
+    fs = 41000
+    dur = 0.02
 
     plt.ion()
     fig = plt.figure()
@@ -30,8 +30,9 @@ if __name__ == "__main__":
     x = gen_freqax(dur)
     y = gen_spec(dur)
     plt.xscale("log")
+    plt.yscale("log")
     plt.xlim(0, 1e5)
-    plt.ylim(0, 50)
+    plt.ylim(1e-5, 1e3)
     (p,) = plt.plot(x, y)
 
     while True:
