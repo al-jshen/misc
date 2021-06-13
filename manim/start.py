@@ -74,13 +74,29 @@ class Start(Scene):
         group2 = gen_rand_dots(n, colors)
         group3 = gen_rand_dots(n, colors)
 
-        self.play(Create(grid), run_time=3)
+        text1 = Text("Here are some transformations.")
+        text2 = Text("A grid of points").to_corner(UL)
+        text3 = Text("First random transformation").to_corner(UL)
+        text4 = Text("Second random transformation").to_corner(UL)
+        text5 = Text("Third random transformation").to_corner(UL)
+
+        self.play(Write(text1))
         self.wait()
-        self.play(ReplacementTransform(grid, group1))
+        self.play(
+            ReplacementTransform(text1, text2), LaggedStart(Create(grid), run_time=3)
+        )
         self.wait()
-        self.play(ReplacementTransform(group1, group2))
+        self.play(
+            ReplacementTransform(grid, group1), ReplacementTransform(text2, text3)
+        )
         self.wait()
-        self.play(ReplacementTransform(group2, group3))
+        self.play(
+            ReplacementTransform(group1, group2), ReplacementTransform(text3, text4)
+        )
         self.wait()
-        self.play(FadeOut(group3))
+        self.play(
+            ReplacementTransform(group2, group3), ReplacementTransform(text4, text5)
+        )
+        self.wait()
+        self.play(Uncreate(group3), Unwrite(text5))
         self.wait()
