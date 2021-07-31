@@ -1,0 +1,4 @@
+digraph G {
+  main -> test -> "test 2";
+  "more test" -> test;
+}

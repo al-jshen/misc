@@ -1,0 +1,18 @@
+[package]
+name = "simd"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+alea = { path = "/home/js/programs/alea" }
+compute = { path = "/home/js/programs/compute" }
+rayon = "*"
+
+[dev-dependencies]
+criterion = "*"
+
+[[bench]]
+name = "bench_add"
+harness = false
